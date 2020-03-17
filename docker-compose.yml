@@ -1,0 +1,25 @@
+version: "3.3"
+services:
+  lnmpServices:
+    hostname: dockerLNMP
+    privileged: true
+    user: root
+    image: zeroy233/lnmp:1.0
+    container_name: lnmp
+    environment:
+      TZ: Asia/shanghai
+    volumes:
+      - ./www:/home/wwwroot/
+      - ./nginx/nginx.conf:/usr/local/nginx/conf/nginx.conf
+      - ./nginx/vhost/:/usr/local/nginx/conf/vhost
+      - ./php/php.ini:/usr/local/php/etc/php.ini
+      - ./wwwlogs/:/home/wwwlogs/
+      - ./mysql/data/:/usr/local/mysql/var/
+    ports:
+      - "80:80"
+      - "81:81"
+      - "82:82"
+      - "83:83"
+      - "84:84"
+      - "85:85"
+    tty: true
